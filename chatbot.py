@@ -1,7 +1,19 @@
 import streamlit as st
 import torch
 import random
+import gdown
 from transformers import DistilBertTokenizerFast, DistilBertForSequenceClassification
+
+# Direct download URL
+url = "https://drive.google.com/uc?id=1rWrK08RgLyU5bBIVzCDtBkBphuXVCeX4"
+
+# Download to a local file
+gdown.download(url, "emotion_model.zip", quiet=False)
+
+from zipfile import ZipFile
+
+with ZipFile("emotion_model.zip", 'r') as zip_ref:
+    zip_ref.extractall("emotion_model")
 
 # ----------------------------------------------------
 # Load Model + Tokenizer
@@ -131,3 +143,4 @@ else:
 
 # Footer
 st.caption("Powered by DistilBERT • Built with Streamlit 🚀")
+
